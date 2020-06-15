@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react'; 
+import Tweet from './Tweet.js';
 
-function App() {
+function App() { 
+  const [isRed, setRed] = useState(false);
+  const [count, setCount] = useState(0);
+
+  const increment = () => { 
+    setCount(count+1);
+    setRed(!isRed);
+  }; 
+
+  const [users, setUsers] = useState([
+    {name: "dataGivenGordon", message:"Ramsey is cool"}, 
+    {name: "dataGivenPaul", message:"Walker"}, 
+    {name: "dataGivenRamsey", message:"Chef "}, 
+    {name: "dataGivenMark", message:"Facebook"}, 
+  ])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1 className={isRed ? 'red' : ''}> Change my Color</h1>
+      <button onClick={increment}> Increment</button>
+      <h1>This is count: {count}</h1>
+      <p> Hard Coded Data</p>
+      <Tweet name="janson" message="hello" />
+      <Tweet name="johnny" message="Yo my guy"/>
+      <Tweet name="tyler" message="ahhh rock on"/>
+      {users.map(user => (
+        <Tweet name={user.name} message={user.message}/>
+      ))}
     </div>
   );
 }
