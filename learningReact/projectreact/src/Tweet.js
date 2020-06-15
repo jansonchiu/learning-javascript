@@ -11,5 +11,6 @@ function Tweet(props) {
     </div> 
   );
 }
- 
+
+//You need to export components to use them and make sure to import where used 
 export default Tweet; 
